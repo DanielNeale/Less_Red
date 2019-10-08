@@ -1,0 +1,41 @@
+import pygame
+
+pygame.init()
+
+main_window = pygame.display.set_mode((800, 600))
+square = pygame.Surface((400, 300))
+square.fill((0, 200, 0))
+
+
+def set_pixel(surface, xPos, yPos, colour):
+    squarePA = pygame.PixelArray(square)
+    squarePA[xPos, yPos] = colour
+    squarePA.close()
+
+
+def decreasedRed(pict):
+    pixelMatrix = pygame.PixelArray(pict)
+    for pixel in pixelMatrix:
+        value = pygame.Surface.get_at(pixel)
+        pygame.Surface.set_at(pixel, value * 0.5)
+
+
+pic = pygame.image.load("cat.jpg")
+
+running = True
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            exit()
+
+    main_window.fill((255, 255, 255))
+    set_pixel(square, 200, 159, (200, 0, 0))
+    main_window.blit(square, (0, 0))
+    pic = decreasedRed(pic)
+    main_window.blit(pic, (200 , 200))
+
+
+    pygame.display.update()
+
+pygame.quit()
