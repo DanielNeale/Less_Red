@@ -5,7 +5,7 @@ main_window = pygame.display.set_mode((1100, 1400))
 picture = pygame.image.load("MyGuy.jpg").convert()
 
 
-def mirror_vertical():
+def mirror_horizontal():
     width = picture.get_width()
     height = picture.get_height()
     mirror_point = int(width / 2)
@@ -15,7 +15,7 @@ def mirror_vertical():
             picture.set_at((width - x - 1, y), left_pixel)
 
 
-mirror_vertical()
+mirror_horizontal()
 main_window.blit(picture, (0, 0))
 
 while True:
